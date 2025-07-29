@@ -7,8 +7,6 @@ const main = async () => {
   });
 
   const query = `
-    CREATE DATABASE inventory_app;
-
     CREATE TABLE IF NOT EXISTS category (
       id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       name VARCHAR(30) NOT NULL
