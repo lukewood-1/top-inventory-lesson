@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>Search results</title>
+</head>
+<body>
+  <%- include('header') %>
+  <main>
+    <h1>Results</h1>
+
+    <div class="readAll">
+      <table>
+        <thead>
+          <tr class="upper-th">
+            <th colspan="2">Category</th>
+            <th colspan="2">Path</th>
+            <th colspan="2">Action</th>
+          </tr>
+          <tr class="lower-th">
+            <td>id</td>
+            <td>name</td>
+            <td>id</td>
+            <td>name</td>
+            <td>id</td>
+            <td>name</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% result.forEach( r => { %>
+            <tr>
+              <td><%= r.category_id %></td>
+              <td><%= r.category_name %></td>
+              <td><%= r.path_id %></td>
+              <td><%= r.path_name %></td>
+              <td><%= r.action_id %></td>
+              <td><%= r.action_name %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <a class="floating-btn" href="/manage/search">Back</a>
+  </main>
+  <%- include('footer') %>
+</body>
+</html>

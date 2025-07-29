@@ -1,0 +1,39 @@
+.wrapper {
+  --gap: 1rem;
+  display: grid;
+  grid: auto / repeat(2, calc(50% - var(--gap)));
+  gap: var(--gap);
+  margin-bottom: 2rem;
+
+  & h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    border: 3px dashed var(--translucentLT);
+    padding: 0.5rem;
+    gap: 1rem;
+
+    & input {
+      flex: 1
+    }
+  }
+
+  & form {
+    display: flex;
+    flex-flow: column;
+    gap: .75rem .5rem;
+
+    & button {
+      align-self: center;
+    }
+  }
+}
+
+.see-all {
+  justify-content: space-around;
+  align-items: center;
+}

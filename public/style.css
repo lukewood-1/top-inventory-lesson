@@ -1,0 +1,404 @@
+@font-face {
+  font-family: arsenal;
+  font-weight: normal;
+  font-style: normal;
+  src: url('./arsenal-regular-webfont.woff') format('woff'),
+    url('./arsenal-regular-webfont.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: exo2;
+  font-weight: normal;
+  font-style: normal;
+  src: url('./Exo2-Regular.woff') format('woff'),
+    url('./Exo2-Regular.woff2') format('woff2')
+}
+
+:root {
+  --base-color: #006767;
+  --light: oklch(from var(--base-color) 1 calc(c * 1.25) h);
+  --dark: oklch(from var(--base-color) .1 c h);
+  --high-light: oklch(from var(--base-color) calc(l * 1.5) c calc(h * .85));
+  --high-dark: oklch(from var(--base-color) .5 c h);
+  --medium-light: oklch(from var(--base-color) .5 calc(c * 1.25) h);
+  --medium-dark: oklch(from var(--base-color) .25 c h);
+  --translucentLT: oklch(from var(--base-color) 1 calc(c * 1.75) h / .15);
+  --translucentDK: oklch(from var(--base-color) .1 c h / .15);
+  interpolate-size: allow-keywords;
+}
+/* This alone brings the cross-document crossfade, but you can set a custom animation with view-transition pseudoelements */
+@view-transition {
+  navigation: auto; 
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  outline: 2px solid var(--light);
+}
+::selection {
+  background: var(--translucentLT);
+}
+::placeholder {
+  color: var(--medium-light);
+  background: var(--translucentDK);
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark);
+  border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--medium-dark), var(--medium-light), var(--medium-dark));
+  border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--high-light), var(--light), var(--high-light));
+}
+
+body {
+  background: linear-gradient(to bottom, var(--dark), var(--medium-dark), var(--dark));
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: var(--translucentLT);
+  border-bottom: 1px solid var(--high-light);
+  padding: 1rem 1.25rem;
+  backdrop-filter: blur(6px) brightness(.3);
+  position: sticky;
+  top: 0;
+
+  & ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+  }
+}
+
+main {
+  flex: 1;
+  padding: 1.5rem 1rem;
+}
+
+footer {
+  padding: 1rem;
+  text-align: center;
+  background: var(--translucentDK);
+  border-top: 1px solid var(--high-light);
+  position: sticky;
+  bottom: 0;
+  backdrop-filter: blur(6px) brightness(.8);
+}
+
+table {
+  border: 2px solid var(--high-light);
+  border-radius: .5rem;
+  margin-bottom: 2rem;
+  margin-inline: auto;
+
+  & th, td {
+    border: 1px solid var(--translucentLT);
+  }
+
+  & th {
+    padding: .75rem 1rem;
+  }
+
+  & td {
+    padding: calc(.15rem + 1vw) calc(.1rem + .5vw);
+    font-size: calc(.5rem + 1vw);
+  }
+}
+.upper-th {
+  font-size: calc(1rem + .75vw);
+}
+.lower-th {
+  font-size: calc(.85rem + .5vw);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: calc(2rem + 2.25vw);
+}
+
+h2 {
+  font-size: calc(1rem + 1vw);
+}
+
+h3 {
+  font-size: calc(0.8rem + 1vw);
+}
+
+h1, h2, h3, summary {
+  font-family: exo2;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-shadow: 0 0 .5rem var(--light);
+}
+
+:not(h1, h2, h3, summary) {
+  font-family: arsenal;
+}
+
+a {
+  text-decoration: none;
+  background: var(--translucentLT);
+  color: var(--light);
+  padding: 0.25rem .5rem;
+  border: 2px solid var(--translucentLT);
+}
+a, button {
+  transition: background-color .3s
+}
+a:hover, button:hover {
+  background: var(--translucentLT);
+  border: 2px solid var(--high-light);
+  color: var(--light);
+  font-weight: bold;
+}
+
+label, a, button {
+  font-size: calc(.75rem + .75vw);
+}
+
+button, input, select {
+  padding: 0.25rem .5rem;
+  color: var(--light);
+  background: var(--translucentLT);
+  border: 2px ridge var(--translucentLT);
+}
+
+select, ::picker(select) {
+  appearance: base-select;
+}
+select {
+  transition: .3s;
+
+  &:hover {
+    background-color: var(--medium-dark);
+  }
+  &:active {
+    background: var(--dark);
+  }
+  &::picker-icon {
+    content: '↓';
+    scale: 2 1.5;
+    transition: rotate .3s;
+  }
+  &:open::picker-icon {
+    rotate: 180deg;
+    color: var(--light);
+  }
+  &::picker(select) {
+    border-radius: .5rem;
+    border: 2px solid var(--high-light);
+    padding-block: .5rem;
+    background: var(--medium-dark);
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: opacity .3s, transform .3s, display .3s allow-discrete, overlay .3s allow-discrete;
+  }
+  &::picker(select):popover-open {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: bottom;
+
+    @starting-style {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
+  &::picker(select)::backdrop {
+    opacity: 0;
+    background-color: #0005;
+    transition: all .3s allow-discrete;
+  }
+  &::picker(select):popover-open::backdrop {
+    opacity: 1;
+    background-color: #0005;
+
+    @starting-style {
+      opacity: 0;
+      background-color: transparent;
+    }
+  }
+}
+select:open {
+  background: var(--medium-dark);
+  color: var(--medium-light);
+}
+select, option {
+  font-size: calc(.75rem + .7vw);
+  text-align: center;
+}
+select, input {
+  border-radius: .3rem;
+}
+
+option {
+  justify-content: center;
+  color: var(--high-light);
+  background: var(--medium-dark);
+  transition: background-color .3s, scale .3s;
+  padding-block: .25rem;
+  border-bottom: 1px solid var(--translucentLT);
+  position: relative;
+  right: .5rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: var(--translucentLT);
+    color: var(--light);
+    scale: 1 1.2;
+  }
+
+  &:last-of-type {
+    border: none
+  }
+
+  &:disabled:checked {
+    display: block;
+  }
+  &:disabled {
+    display: none;
+  }
+
+  &::checkmark {
+    content-visibility: hidden;
+    position: absolute;
+    right: 0.5rem;
+    scale: 1.5;
+  }
+
+  &:checked {
+    color: var(--light);
+  }
+  &:checked::checkmark {
+    content-visibility: visible;
+  }
+}
+
+button, a {
+  border-radius: .5rem;
+}
+
+input {
+  font-size: calc(.75rem + .7vw);
+}
+
+/* Header */
+
+[popover] {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+
+  transition-behavior: allow-discrete;
+  transition-property: overlay, display, opacity, transform;
+  transition-duration: .5s;
+}
+[popover]:popover-open {
+  opacity: 1;
+  transform: scaleY(1);
+
+  @starting-style {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+#about {
+  padding: 1.5rem;
+  top: 25vh;
+  width: 80vw;
+  min-height: 60vh;
+  margin-inline: auto;
+  background: var(--medium-dark);
+  border: 2px solid var(--high-light);
+  border-radius: .5rem;
+
+  & *:focus {
+    outline: none;
+  }
+
+  & h2 {
+    text-align: center;
+    color: var(--light);
+    margin-bottom: 1rem;
+  }
+
+  details::details-content {
+    padding-left: 1rem;
+    font-size: calc(0.5rem + 1vw);
+
+    height: 0;
+    opacity: 0;
+    clip-path: inset(100% 0);
+
+    transition: 
+      opacity .6s,
+      content-visibility .6s allow-discrete,
+      clip-path .3s,
+      height .6s
+    ;
+  }
+  details[open]::details-content {
+    opacity: 1;
+    height: auto;
+    clip-path: inset(0 0);
+  }
+
+  summary {
+    color: var(--light);
+    margin-bottom: .75rem;
+    font-size: calc(0.6rem + 1.2vw);
+  }
+
+  details span {
+    color: var(--high-light)
+  }
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* READ.ejs */
+
+.see-all {
+  display: flex;
+  gap: 1rem;
+}
+
+.floating-btn {
+  position: sticky;
+  bottom: 15%;
+  left: 5%;
+  box-shadow: inset 0 0 .5rem var(--medium-light), 0 0 1rem #fff;
+  opacity: 0.5;
+  transition: opacity .3s, box-shadow .3s;
+
+  &:hover {
+    opacity: 1;
+    box-shadow: none;
+  }
+}

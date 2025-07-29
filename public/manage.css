@@ -1,0 +1,17 @@
+.linktree {
+  height: 30vh;
+  display: grid;
+  grid: auto / repeat(2, 50%);
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+  gap: 3rem .5rem;
+
+  & a {
+    width: max-content;
+    padding: .75rem 1rem;
+    text-align: center;
+    vertical-align: middle;
+    font-size: calc(.75rem + 1.75vw);
+  }
+}

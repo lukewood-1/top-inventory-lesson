@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/insert.css">
+  <title>Insert - index</title>
+</head>
+<body>
+  <%- include('header') %>
+  <main>
+    <h1>Insert a new record</h1>
+
+    <div class="wrapper">
+      <div class="insert-category">
+        <h2>Insert Category</h2>
+        <form action="/manage/insert/category" method="post">
+          <label for="insert-category">Name: </label>
+          <input type="text" name="name" id="insert-category" maxlength="30" placeholder="insert category" />
+
+          <button type="submit">Insert</button>
+        </form>
+      </div>
+
+      <div class="insert-path">
+        <h2>Insert Path</h2>
+        <form action="/manage/insert/path" method="post">
+          <div>
+            <label for="insert-path">Name: </label>
+            <input type="text" name="name" id="insert-path" maxlength="30" placeholder="insert path" />
+          </div>
+
+          <div>
+            <label for="parent-category">Category: </label>
+            <select name="parent" id="parent-category">
+              <button>
+                <selectedcontent></selectedcontent>
+              </button>
+              <option value="NULL" disabled selected>Select an option</option>
+              <% categories.forEach( c => { %>
+                <option value="<%= c.id %>"><%= c.name %></option>
+              <% }) %>
+            </select>
+            <button type="submit">Insert</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="insert-action">
+        <h2>Insert Action</h2>
+        <form action="/manage/insert/action" method="post">
+          <div>
+            <label for="insert-action">Name: </label>
+            <input type="text" name="name" id="insert-action" maxlength="30" placeholder="insert action" />
+          </div>
+
+          <div>
+            <label for="parent-path">Path: </label>
+            <select name="parent" id="parent-path">
+              <option value="NULL" disabled selected>Select an option</option>
+              <% paths.forEach( p => { %>
+                <option value="<%= p.id %>"><%= p.name %></option>
+              <% }) %>
+            </select>
+            <button type="submit">Insert</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <%- include('footer') %>
+</body>
+</html>

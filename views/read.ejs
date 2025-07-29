@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/search.css">
+  <title>Search operation</title>
+</head>
+<body>
+  <%- include('header') %>
+  <main>
+    <h1>Search section</h1>
+
+    <div class="wrapper">
+      <div class="see-all">
+        <h2>Show all</h2>
+        <a href="/manage/search/all">Search</a> 
+      </div>
+
+      <div class="search-category">
+        <h2>By category</h2>
+
+        <form action="/manage/search/category" method="get">
+          <label for="query-category">Category: </label>
+          <input type="text" name="query" id="query-category" maxlength="30" size="5" placeholder="Which category?"/>
+
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+      <div class="search-path">
+        <h2>By path</h2>
+
+        <form action="/manage/search/path" method="get">
+          <label for="query-path">Path: </label>
+          <input type="text" name="query" id="query-path" maxlength="30" size="5" placeholder="Which path?">
+
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+      <div class="search-action">
+        <h2>By action</h2>
+
+        <form action="/manage/search/action" method="get">
+          <label for="query-action">Action: </label>
+          <input type="text" name="query" id="query-action" maxlength="30" size="5" placeholder="Which action?">
+
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <%- include('footer') %>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/insert.css">
+  <title>Update - index</title>
+</head>
+<body>
+  <%- include('header') %>
+  <main>
+    <h1>Update entries</h1>
+
+    <div class="wrapper">
+      <div class="update-category">
+        <h2>Update category</h2>
+        <form action="/manage/update/category" method="post">
+
+          <label for="target-category">Update </label>
+          <select name="oldValue" id="target-category">
+            <option value="NULL" disabled selected>Choose a category</option>
+            <% categories.forEach( c => { %>
+              <option value="<%= c.id %>"><%= c.name %></option>
+            <% }) %>
+          </select>
+
+          <label for="new-category"> to </label>
+          <input type="text" name="newValue" id="new-category" maxlength="30" placeholder="insert new category" />
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+
+      <div class="update-path">
+        <h2>Update path</h2>
+        <form action="/manage/update/path" method="post">
+
+          <label for="target-path">Update </label>
+          <select name="oldValue" id="target-path">
+            <option value="NULL" disabled selected>Choose a path</option>
+            <% paths.forEach( c => { %>
+              <option value="<%= c.id %>"><%= c.name %></option>
+            <% }) %>
+          </select>
+
+          <label for="new-path"> to </label>
+          <input type="text" name="newValue" id="new-path" maxlength="30" placeholder="insert new path" />
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+
+      <div class="update-action">
+        <h2>Update action</h2>
+        <form action="/manage/update/action" method="post">
+
+          <label for="target-action">Update </label>
+          <select name="oldValue" id="target-action">
+            <option value="NULL" disabled selected>Choose an action</option>
+            <% actions.forEach( c => { %>
+              <option value="<%= c.id %>"><%= c.name %></option>
+            <% }) %>
+          </select>
+
+          <label for="new-action"> to </label>
+          <input type="text" name="newValue" id="new-action" maxlength="30" placeholder="insert new action" />
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <%- include('footer') %>
+</body>
+</html>
